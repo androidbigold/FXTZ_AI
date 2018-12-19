@@ -31,8 +31,6 @@ FLAGS = flags.FLAGS
 def class_text_to_int(row_label):
     if row_label == 'Reimu':
         return 1
-    elif row_label == 'Danmaku':
-        return 11
     else:
         None
 
@@ -86,7 +84,7 @@ def create_tf_example(group, path):
 
 def main(_):
     writer = tf.python_io.TFRecordWriter(FLAGS.output_path)
-    path = os.path.join(os.getcwd(), FLAGS.mode)
+    path = os.path.join(os.getcwd(), os.path.join('images', FLAGS.mode))
     examples = pd.read_csv(FLAGS.csv_input)
     grouped = split(examples, 'filename')
     for group in grouped:
